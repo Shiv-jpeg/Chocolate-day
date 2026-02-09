@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For My BIVI 🍫</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  height:100%;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  background:#2b1b14;
+}
+
+.swiper{
+  height:100vh;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+section{
+  height:100vh;
+  scroll-snap-align:start;
+  padding:44px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* soft blur layer */
+section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  backdrop-filter:blur(1.2px);
+  z-index:0;
+}
+section > *{position:relative;z-index:1}
+
+h1,h2{
+  font-family:'Playfair Display',serif;
+  color:#fff2e9;
+}
+
+p{
+  font-size:1.08rem;
+  line-height:1.9;
+  color:#f5d6c6;
+  max-width:560px;
+}
+
+/* chocolate backgrounds */
+.bg1{background:linear-gradient(135deg,#3b2417,#5a3824)}
+.bg2{background:linear-gradient(135deg,#4a2c1a,#6b3f28)}
+.bg3{background:linear-gradient(135deg,#5a341f,#7a4a2f)}
+.bg4{background:linear-gradient(135deg,#6b3f28,#8a5a3c)}
+.bg5{background:linear-gradient(135deg,#3a1f14,#5a2f1c)}
+
+/* glow */
+.glow{
+  animation:glow 2.4s infinite alternate;
+}
+@keyframes glow{
+  from{transform:scale(1)}
+  to{transform:scale(1.05)}
+}
+
+/* 🍫 CHOCOLATE DROPS */
+.choco{
+  position:fixed;
+  top:-20px;
+  font-size:20px;
+  animation:drip linear infinite;
+  pointer-events:none;
+  opacity:.9;
+}
+
+@keyframes drip{
+  to{
+    transform:translateY(120vh) rotate(180deg);
+    opacity:0;
+  }
+}
+
+/* sparkle hearts */
+.spark{
+  position:fixed;
+  bottom:-20px;
+  font-size:16px;
+  animation:float 7s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes float{
+  to{
+    transform:translateY(-120vh) translateX(30px);
+    opacity:0;
+  }
+}
+
+/* buttons */
+.btn{
+  margin-top:28px;
+  padding:14px 36px;
+  border-radius:40px;
+  border:none;
+  background:#d2691e;
+  color:white;
+  font-size:1.05rem;
+}
+
+/* music overlay */
+#musicOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(43,27,20,.97);
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+#musicOverlay button{
+  margin-top:18px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:#d2691e;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicOverlay">
+  <h2>For my BIVI 🍫</h2>
+  <p>Tap once… let it melt 💞</p>
+  <button onclick="startMusic()">Start</button>
+</div>
+
+<div class="swiper">
+
+<!-- PAGE 1 -->
+<section class="bg1 glow">
+  <h1>Happy Chocolate Day 🍫</h1>
+  <p>For my BIVI…<br>sweet, warm, and made for you.</p>
+</section>
+
+<!-- PAGE 2 -->
+<section class="bg2">
+  <h2>Chocolate Feels Like…</h2>
+  <p>
+    Comfort.  
+    Warmth.  
+    And a little happiness in every bite.
+  </p>
+</section>
+
+<!-- PAGE 3 -->
+<section class="bg3">
+  <h2>Just Like You, Iffu 🤎</h2>
+  <p>
+    Soft on the outside,  
+    rich on the inside,  
+    impossible to resist.
+  </p>
+</section>
+
+<!-- PAGE 4 -->
+<section class="bg4">
+  <h2>For My BIVI 🍬</h2>
+  <p>
+    Every time I think of you,  
+    my heart craves a little sweetness.
+  </p>
+</section>
+
+<!-- PAGE 5 -->
+<section class="bg5">
+  <h2>If Love Had a Flavor…</h2>
+  <p>
+    It would melt slowly,  
+    stay longer,  
+    and taste like you.
+  </p>
+</section>
+
+<!-- PAGE 6 -->
+<section class="bg2">
+  <h2>Tap for Chocolate 🍫</h2>
+  <button class="btn" onclick="choco()">Give Chocolate</button>
+</section>
+
+<!-- PAGE 7 -->
+<section class="bg3">
+  <h2>What Do I Call You?</h2>
+  <input id="nameInput" placeholder="my sweetest name"
+    style="padding:12px;border-radius:12px;border:1px solid #ccc">
+  <button class="btn" onclick="check()">Submit</button>
+</section>
+
+<!-- PAGE 8 -->
+<section class="bg4">
+  <h2>Little Truth 🤍</h2>
+  <p>
+    Even the darkest chocolate  
+    tastes better with you.
+  </p>
+</section>
+
+<!-- PAGE 9 -->
+<section class="bg5">
+  <h2>One More Bite</h2>
+  <p>
+    If chocolates could hug,  
+    this one would be wrapped around you.
+  </p>
+</section>
+
+<!-- PAGE 10 -->
+<section class="bg1 glow">
+  <h1>🍫 For My BIVI 🍫</h1>
+  <p>
+    Happy Chocolate Day, Iffu.  
+    Always sweet for you.
+  </p>
+</section>
+
+</div>
+
+<script>
+function startMusic(){
+  document.getElementById("bgMusic").play().then(()=>{
+    document.getElementById("musicOverlay").style.display="none";
+  });
+}
+
+/* chocolate drops */
+setInterval(()=>{
+  const c=document.createElement("div");
+  c.className="choco";
+  c.innerText="🍫";
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration=(4+Math.random()*3)+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),7000);
+},500);
+
+/* sparkle hearts */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="spark";
+  s.innerText="🤎";
+  s.style.left=Math.random()*100+"vw";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),7000);
+},900);
+
+/* chocolate button burst */
+function choco(){
+  for(let i=0;i<6;i++){
+    setTimeout(()=>burst(),i*120);
+  }
+}
+function burst(){
+  const c=document.createElement("div");
+  c.className="choco";
+  c.innerText="🍬";
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration="4s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),5000);
+}
+
+/* name check */
+function check(){
+  const v=document.getElementById("nameInput").value.toLowerCase();
+  if(v==="iffu"){
+    alert("🤎 Always my Iffu 🤎");
+  }else{
+    alert("Try again 😛");
+  }
+}
+
+/* Easter egg */
+let taps=0;
+document.body.addEventListener("click",()=>{
+  taps++;
+  if(taps===30){
+    alert("🍫 You’re my favorite addiction, BIVI 🍫");
+  }
+});
+</script>
+
+</body>
+</html>
