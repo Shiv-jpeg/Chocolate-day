@@ -37,7 +37,6 @@ section{
   overflow:hidden;
 }
 
-/* soft blur layer */
 section::before{
   content:"";
   position:absolute;
@@ -66,33 +65,25 @@ p{
 .bg4{background:linear-gradient(135deg,#6b3f28,#8a5a3c)}
 .bg5{background:linear-gradient(135deg,#3a1f14,#5a2f1c)}
 
-/* glow */
-.glow{
-  animation:glow 2.4s infinite alternate;
-}
+.glow{animation:glow 2.4s infinite alternate}
 @keyframes glow{
   from{transform:scale(1)}
   to{transform:scale(1.05)}
 }
 
-/* 🍫 CHOCOLATE DROPS */
+/* 🍫 chocolate drops */
 .choco{
   position:fixed;
   top:-20px;
   font-size:20px;
   animation:drip linear infinite;
   pointer-events:none;
-  opacity:.9;
 }
-
 @keyframes drip{
-  to{
-    transform:translateY(120vh) rotate(180deg);
-    opacity:0;
-  }
+  to{transform:translateY(120vh) rotate(180deg);opacity:0}
 }
 
-/* sparkle hearts */
+/* 🤎 hearts */
 .spark{
   position:fixed;
   bottom:-20px;
@@ -100,10 +91,26 @@ p{
   animation:float 7s linear infinite;
   pointer-events:none;
 }
-
 @keyframes float{
+  to{transform:translateY(-120vh) translateX(30px);opacity:0}
+}
+
+/* 🎁 CHOCOLATE WRAPPER STRIPS */
+.wrapper{
+  position:fixed;
+  top:-30px;
+  width:40px;
+  height:14px;
+  background:linear-gradient(90deg,#d2691e,#f4a460,#d2691e);
+  border-radius:4px;
+  animation:unwrap linear infinite;
+  pointer-events:none;
+  opacity:.9;
+}
+
+@keyframes unwrap{
   to{
-    transform:translateY(-120vh) translateX(30px);
+    transform:translateY(120vh) rotate(540deg);
     opacity:0;
   }
 }
@@ -149,7 +156,7 @@ p{
 
 <div id="musicOverlay">
   <h2>For my BIVI 🍫</h2>
-  <p>Tap once… let it melt 💞</p>
+  <p>Tap once… let it melt 🤎</p>
   <button onclick="startMusic()">Start</button>
 </div>
 
@@ -164,11 +171,7 @@ p{
 <!-- PAGE 2 -->
 <section class="bg2">
   <h2>Chocolate Feels Like…</h2>
-  <p>
-    Comfort.  
-    Warmth.  
-    And a little happiness in every bite.
-  </p>
+  <p>Comfort. Warmth. Happiness in every bite.</p>
 </section>
 
 <!-- PAGE 3 -->
@@ -186,7 +189,7 @@ p{
   <h2>For My BIVI 🍬</h2>
   <p>
     Every time I think of you,  
-    my heart craves a little sweetness.
+    my heart craves sweetness.
   </p>
 </section>
 
@@ -206,12 +209,12 @@ p{
   <button class="btn" onclick="choco()">Give Chocolate</button>
 </section>
 
-<!-- PAGE 7 -->
+<!-- FUN PAGE -->
 <section class="bg3">
-  <h2>What Do I Call You?</h2>
-  <input id="nameInput" placeholder="my sweetest name"
+  <h2>My Favourite Chocolate? 😋</h2>
+  <input id="favInput" placeholder="hint: not a brand 😉"
     style="padding:12px;border-radius:12px;border:1px solid #ccc">
-  <button class="btn" onclick="check()">Submit</button>
+  <button class="btn" onclick="checkFav()">Answer</button>
 </section>
 
 <!-- PAGE 8 -->
@@ -228,7 +231,7 @@ p{
   <h2>One More Bite</h2>
   <p>
     If chocolates could hug,  
-    this one would be wrapped around you.
+    this one would wrap around you.
   </p>
 </section>
 
@@ -250,7 +253,7 @@ function startMusic(){
   });
 }
 
-/* chocolate drops */
+/* 🍫 chocolate rain */
 setInterval(()=>{
   const c=document.createElement("div");
   c.className="choco";
@@ -261,7 +264,7 @@ setInterval(()=>{
   setTimeout(()=>c.remove(),7000);
 },500);
 
-/* sparkle hearts */
+/* 🤎 hearts */
 setInterval(()=>{
   const s=document.createElement("div");
   s.className="spark";
@@ -271,7 +274,17 @@ setInterval(()=>{
   setTimeout(()=>s.remove(),7000);
 },900);
 
-/* chocolate button burst */
+/* 🎁 wrapper strips */
+setInterval(()=>{
+  const w=document.createElement("div");
+  w.className="wrapper";
+  w.style.left=Math.random()*100+"vw";
+  w.style.animationDuration=(3+Math.random()*2)+"s";
+  document.body.appendChild(w);
+  setTimeout(()=>w.remove(),6000);
+},700);
+
+/* chocolate burst */
 function choco(){
   for(let i=0;i<6;i++){
     setTimeout(()=>burst(),i*120);
@@ -285,15 +298,23 @@ function burst(){
   c.style.animationDuration="4s";
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),5000);
+
+  const w=document.createElement("div");
+  w.className="wrapper";
+  w.style.left=Math.random()*100+"vw";
+  w.style.animationDuration="3s";
+  document.body.appendChild(w);
+  setTimeout(()=>w.remove(),5000);
 }
 
-/* name check */
-function check(){
-  const v=document.getElementById("nameInput").value.toLowerCase();
-  if(v==="iffu"){
-    alert("🤎 Always my Iffu 🤎");
+/* favourite chocolate logic */
+function checkFav(){
+  const v=document.getElementById("favInput").value.toLowerCase();
+  if(v==="you"){
+    alert("🤎 Correct 😋 YOU are my favourite chocolate 🤎");
+    choco();
   }else{
-    alert("Try again 😛");
+    alert("Nope 😛 try again… sweeter hint 😘");
   }
 }
 
@@ -302,7 +323,7 @@ let taps=0;
 document.body.addEventListener("click",()=>{
   taps++;
   if(taps===30){
-    alert("🍫 You’re my favorite addiction, BIVI 🍫");
+    alert("🍫 You’re sweeter than any chocolate, my BIVI 🍫");
   }
 });
 </script>
